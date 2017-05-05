@@ -1,0 +1,5 @@
+*.pyc
+.idea/
+learning_journal.egg-info/
+*egg-info
+*.sqlite
