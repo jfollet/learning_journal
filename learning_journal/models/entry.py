@@ -2,9 +2,11 @@ from sqlalchemy import (
     Column,
     Index,
     Integer,
+    Unicode,
+    DateTime,
     UnicodeText,
-    DateTime
 )
+import datetime
 
 from .meta import Base
 
@@ -12,18 +14,20 @@ from .meta import Base
 class Entry(Base):
     __tablename__ = 'entries'
     id = Column(Integer, primary_key=True)
-    title = Column(UnicodeText)
-    body = Column(Integer)
-    created = Column(DateTime)
-    edited = Column(DateTime)
+    title = Column(Unicode(255), nullable=False)
+    body = Column(UnicodeText, nullable=True)
+    created = Column(DateTime, default=datetime.datetime.utcnow())
+    edited = Column(DateTime,  default=datetime.datetime.utcnow())
 
-    def all(self):
-        """Return all entries in database"""
-        pass
+    @classmethod
+    def all(cls):
+        """Return all"""
+        return dbsession.query(Entry).all()
 
-    def by_id(self, id):
+    @classmethod
+    def by_id(cls, id):
         """Return entry by id number"""
-        pass
-    
+        return dbsession.query(Entry).get(id)
 
-Index('my_index', Entry.name, unique=True, mysql_length=255)
+
+# Index('my_index', Entry.title, unique=True, mysql_length=255)

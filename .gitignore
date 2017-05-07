@@ -5,3 +5,4 @@ learning_journal.egg-info/
 *egg-info
 *.sqlite
 ljenv/
+pshell_db_strings.txt
