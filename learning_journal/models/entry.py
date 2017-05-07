@@ -5,6 +5,7 @@ from sqlalchemy import (
     Unicode,
     DateTime,
     UnicodeText,
+    desc,
 )
 import datetime
 
@@ -22,7 +23,7 @@ class Entry(Base):
     @classmethod
     def all(cls):
         """Return all"""
-        return dbsession.query(Entry).all()
+        return dbsession.query(Entry).order_by(desc(Entry.created))
 
     @classmethod
     def by_id(cls, id):
