@@ -21,14 +21,14 @@ class Entry(Base):
     edited = Column(DateTime,  default=datetime.datetime.utcnow())
 
     @classmethod
-    def all(cls):
+    def all(cls, session):
         """Return all"""
-        return dbsession.query(Entry).order_by(desc(Entry.created))
+        return session.query(Entry).order_by(desc(Entry.created))
 
     @classmethod
-    def by_id(cls, id):
+    def by_id(cls, session, id):
         """Return entry by id number"""
-        return dbsession.query(Entry).get(id)
+        return session.query(Entry).get(id)
 
 
 # Index('my_index', Entry.title, unique=True, mysql_length=255)
