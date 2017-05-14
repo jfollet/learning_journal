@@ -41,5 +41,5 @@ def main(argv=sys.argv):
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
 
-        # model = Entry(title='First Entry')
-        # dbsession.add(model)
+        model = Entry(title='First Entry')
+        dbsession.add(model)
