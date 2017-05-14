@@ -1,6 +1,6 @@
-@import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700);
+@import url(//fonts.googleapis.com/css?family=Roboto);
 body {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
   color: #ffffff;
   background: #bc2131;
@@ -11,7 +11,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
 }
 body{
@@ -31,13 +31,14 @@ header:after{
     display:table;
     clear:both;}
 header a, footer a{
-    text-decoration:none}
+    text-decoration:none;
+    font-size: 25px;}
 header a:hover,
 footer a:hover {
     color:#fff;
 }
 header a:visited, footer a:visited {
-    color:#eee;
+    color: #621963;
 }
 header aside{
     float:right;
