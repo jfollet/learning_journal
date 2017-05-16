@@ -15,7 +15,7 @@ from ..models import (
     get_session_factory,
     get_tm_session,
     )
-from ..models import MyModel, Entry
+from ..models import Entry
 
 
 def usage(argv):
@@ -40,6 +40,10 @@ def main(argv=sys.argv):
 
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
+        entry1 = Entry(title="My first python entry.", body="I learned something!")
+        entry2 = Entry(title="Second Entry", body="Python give you wings!")
+        entry3 = Entry(title="Third Entry", body="Python makes web creation fun!")
+        dbsession.add(entry1)
+        dbsession.add(entry2)
+        dbsession.add(entry3)
 
-        model = Entry(title='First Entry')
-        dbsession.add(model)

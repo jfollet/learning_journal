@@ -1,9 +1,9 @@
 {% extends "layout.jinja2" %}
 
 {% block body %}
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<div class="w3-card-4 w3-blue">
-<article>
+<!-- link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" -->
+<!-- <div class="w3-card-4 w3-blue w3-margin" -->
+<article id="boxshadow">
     <h1>{{ entry.title }}</h1>
     <hr/>
     <p>{{ entry.body }}</p>
@@ -11,5 +11,4 @@
     <hr/>
     <p>Create at <strong title="{{ entry.created }}">{{ entry.created }}</strong></p>
 </article>
-</div>
 {% endblock body %}
