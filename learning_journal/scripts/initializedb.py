@@ -39,14 +39,16 @@ def main(argv=sys.argv):
 
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
+
+        password = os.environ.get('ADMIN_PASSWORD', 'admin')
+        username = 'admin'
+        encrypted = password_context.encrypt(password)
+        user = User(username=username, password=encrypted)
+        dbsession.add(user)
+
         entry1 = Entry(title="My first python entry.", body="I learned something!")
         entry2 = Entry(title="Second Entry", body="Python give you wings!")
         entry3 = Entry(title="Third Entry", body="Python makes web creation fun!")
         dbsession.add(entry1)
         dbsession.add(entry2)
         dbsession.add(entry3)
-        password = 'admin'
-        username = 'admin'
-        encrypted = password_context.encrypt(password)
-        user1 = User(username=username, password=encrypted)
-        dbsession.add(user1)
