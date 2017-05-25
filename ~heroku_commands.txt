@@ -1,0 +1,9 @@
+heroku create
+heroku addons:create heroku-postgresql:hobby-dev
+heroku config:set ADMIN_PASSWORD=adminheroku config:set AUTH_SECRET=asdfjlqwoiudsfjl
+git push heroku master
+heroku run ./build_db
+heroku run bash ./run
+heroku restart
+heroku open
+

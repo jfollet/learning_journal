@@ -1,0 +1,7 @@
+heroku create
+git push heroku master
+heroku run bash ./run
+heroku run ./build_db
+heroku restart
+heroku open
+
