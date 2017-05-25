@@ -32,6 +32,9 @@ def main(argv=sys.argv):
     setup_logging(config_uri)
     settings = get_appsettings(config_uri, options=options)
 
+    if 'DATABASE_URL' in os.environ:
+        settings['sqlalchemy.url'] = os.environ['DATABASE_URL']
+
     engine = get_engine(settings)
     Base.metadata.create_all(engine)
 
@@ -46,9 +49,9 @@ def main(argv=sys.argv):
         user = User(username=username, password=encrypted)
         dbsession.add(user)
 
-        entry1 = Entry(title="My first python entry.", body="I learned something!")
-        entry2 = Entry(title="Second Entry", body="Python give you wings!")
-        entry3 = Entry(title="Third Entry", body="Python makes web creation fun!")
-        dbsession.add(entry1)
-        dbsession.add(entry2)
-        dbsession.add(entry3)
+        # entry1 = Entry(title="My first python entry.", body="I learned something!")
+        # entry2 = Entry(title="Second Entry", body="Python give you wings!")
+        # entry3 = Entry(title="Third Entry", body="Python makes web creation fun!")
+        # dbsession.add(entry1)
+        # dbsession.add(entry2)
+        # dbsession.add(entry3)

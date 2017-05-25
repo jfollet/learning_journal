@@ -16,7 +16,7 @@ def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
     if 'DATABASE_URL' in os.environ:
-        settings['sqlalchemy_url'] = os.environ['DATABASE_URL']
+        settings['sqlalchemy.url'] = os.environ['DATABASE_URL']
     secret = os.environ.get('AUTH_SECRET', 'somesecret')
     config = Configurator(settings=settings,
                           authentication_policy=AuthTktAuthenticationPolicy(secret),
