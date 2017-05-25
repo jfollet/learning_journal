@@ -1,21 +1,20 @@
 import os
 import sys
-import transaction
 
+import transaction
 from pyramid.paster import (
     get_appsettings,
     setup_logging,
-    )
-
+)
 from pyramid.scripts.common import parse_vars
 
-from ..models.meta import Base
+from ..models import User, password_context, Entry
 from ..models import (
     get_engine,
     get_session_factory,
     get_tm_session,
-    )
-from ..models import Entry
+)
+from ..models.meta import Base
 
 
 def usage(argv):
@@ -46,4 +45,8 @@ def main(argv=sys.argv):
         dbsession.add(entry1)
         dbsession.add(entry2)
         dbsession.add(entry3)
-
+        password = 'admin'
+        username = 'admin'
+        encrypted = password_context.encrypt(password)
+        user1 = User(username=username, password=encrypted)
+        dbsession.add(user1)

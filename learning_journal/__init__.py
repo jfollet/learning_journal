@@ -1,5 +1,7 @@
 from pyramid.config import Configurator
 from sqlalchemy import engine_from_config
+from pyramid.authentication import AuthTktAuthenticationPolicy
+from pyramid.authorization import ACLAuthorizationPolicy
 
 
 def create_session(settings):
@@ -12,7 +14,10 @@ def create_session(settings):
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
-    config = Configurator(settings=settings)
+    config = Configurator(settings=settings,
+                          authentication_policy=AuthTktAuthenticationPolicy('somesecret'),
+                          authorization_policy=ACLAuthorizationPolicy(),
+                          default_permission='view',)
     config.include('pyramid_jinja2')
     config.include('.models')
     config.include('.routes')

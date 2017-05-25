@@ -4,7 +4,7 @@ from pyramid.view import view_config
 from ..models import Entry
 
 
-@view_config(route_name='detail', renderer='templates/detail.jinja2')
+@view_config(route_name='detail', renderer='templates/detail.jinja2', permission='view')
 def detail_page(request):
     this_id = request.matchdict.get('id', -1)
     entry = Entry.by_id(this_id, request.dbsession)
